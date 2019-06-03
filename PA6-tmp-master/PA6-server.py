@@ -39,7 +39,7 @@ def echo_server(my_port):
                     db.commit()
                     msg = "server received\n"
                     conn.send(msg.encode())
-                City(temperature=tmp, date=datein).save()
+                City(name=tmp, state=datein).save()
                 db.close()
 
         # Exception Handling
