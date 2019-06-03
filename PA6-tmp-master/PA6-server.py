@@ -3,6 +3,15 @@ import sys
 import time
 import re
 import sqlite3
+import os
+import django
+from django.utils import timezone
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "citysearch_project.settings")
+django.setup()
+from cities.models import City
+import socketserver, json
+import logging
+import time
 
 def echo_server(my_port):
     sock = socket(AF_INET, SOCK_STREAM)  # 소켓 객체를 생성
@@ -30,7 +39,7 @@ def echo_server(my_port):
                     db.commit()
                     msg = "server received\n"
                     conn.send(msg.encode())
-                    
+                City(temperature=tmp, date=datein).save()
                 db.close()
 
         # Exception Handling
